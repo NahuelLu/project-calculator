@@ -3,3 +3,6 @@ function add(){
         return total + number;
     },0)
 }
+function subtract(num,num1){
+    return num - num1;
+}
