@@ -17,6 +17,7 @@ function divide(num,num1){
 function operate(operator,num,num1){
     return operator(num,num1);
 }
+//Functions for DOM
 function display(){
     const numberContainer = document.querySelector('.numbers-container');
     const buttonsNumber= numberContainer.querySelectorAll('button');
@@ -51,10 +52,8 @@ let currentDisplay="";
 let currentNumbers=[];
 let currentOperator="";
 function results(){
-    console.log(currentNumbers[0]);
-    console.log(currentNumbers[1]);
     if(currentOperator==="+"){
-        return operate(add,currentNumbers[0],currentNumbers[1]);
+        return operate(add,parseInt(currentNumbers[0]),parseInt(currentNumbers[1]));
     }else if(currentOperator==="-"){
         return operate(subtract,currentNumbers[0],currentNumbers[1]);
     }else if(currentOperator==="*"){
