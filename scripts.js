@@ -14,3 +14,6 @@ function multiply(){
 function divide(num,num1){
     return num/num1;
 }
+function operate(operator,num,num1){
+    return operator(num,num1);
+}
