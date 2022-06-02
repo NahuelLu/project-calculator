@@ -2,10 +2,36 @@
 <html>
     <head>
         <title>Calculator</title>
-        <script src="./scripts.js"></script>
+        <script src="./scripts.js" defer></script>
         <link rel="stylesheet" href="./style.css">
     </head>
     <body lang="eng">
-        
+        <div class="calculator-container">
+            <div class="display-container">
+                <div class="display"></div>
+            </div>
+            <div class="buttons-container">
+                <div class="numbers-container">
+                    <button value="0"class="number">0</button>
+                    <button value="1"class="number">1</button>
+                    <button value="2"class="number">2</button>
+                    <button value="3"class="number">3</button>
+                    <button value="4"class="number">4</button>
+                    <button value="5"class="number">5</button>
+                    <button value="6"class="number">6</button>
+                    <button value="7"class="number">7</button>
+                    <button value="8"class="number">8</button>
+                    <button value="9"class="number">9</button>
+                </div>
+                <div class="operators-container">
+                    <button id="add">+</button>
+                    <button id="subtract">-</button>
+                    <button id="multiply">*</button>
+                    <button id="divide">/</button>
+                    <button id="equals">=</button>
+                    <button id="clear">clear</button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

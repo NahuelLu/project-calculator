@@ -1,0 +1,33 @@
+html,body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+.calculator-container{
+    background: rgb(246, 180, 180);
+    height:300px;
+    width: 200px;
+    display:flex;
+    flex-direction: column;
+}
+.display-container{
+    min-height: 20%;
+    display: flex;
+}
+.display{
+    margin:8px;
+    background: rgb(177, 148, 148);
+    border-radius: 2px;
+    flex:auto;
+    max-width: 91%;
+    overflow-wrap:break-word;
+}
+
+.buttons-container{
+    flex:auto;
+}
+.numbers-container{
+    display: flex;
+    flex-wrap: wrap;
+}
