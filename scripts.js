@@ -24,29 +24,57 @@ function display(){
     const operatorsContainer = document.querySelector('.operators-container');
     const buttonsOperators=operatorsContainer.querySelectorAll('.operator');
     const equalsButton= document.querySelector('#equals');
+    const clearButton= document.querySelector('#clear');
     //Events Listeners
     buttonsNumber.forEach(button => button.addEventListener("click",displayNumber));
-    buttonsOperators.forEach(button=> button.addEventListener('click',displayOperator));
+    buttonsOperators.forEach(button=> button.addEventListener('click',selectOperator));
     equalsButton.addEventListener('click',showResults);
+    clearButton.addEventListener('click',clearCalculator);
+}
+function clearCurrentDisplay(){
+    currentDisplay="";
+}
+function clearCalculator(){
+    updateDisplay("");
+    clearCurrentDisplay();
+    currentNumbers=[];
+    currentOperator="";
 }
 function updateDisplay(content){
     const display=document.querySelector(".display");
+    if(content===""){
+        display.textContent=content;
+    }
     display.textContent+=content;
 }
 function displayNumber(){
     updateDisplay(this.value);
     currentDisplay+=this.value;
 }
-function displayOperator(){
-    currentNumbers.push(currentDisplay);
+function updateOperator(operator){
+    currentOperator=operator;
+}
+function updateCurrentNumbers(number){
+    currentNumbers.push(number);
+}
+function selectOperator(){
+    updateCurrentNumbers(currentDisplay);
     updateDisplay(this.value);
-    currentDisplay="";
-    currentOperator=this.value;
+    clearCurrentDisplay();
+    updateOperator(this.value);
 }
 function showResults(){
     const display=document.querySelector(".display");
     currentNumbers.push(currentDisplay);
-    display.textContent=results();
+    updateDisplayWithResults();
+}
+function updateDisplayWithResults(){
+    const display=document.querySelector(".display");
+    if(currentNumbers.length===2){
+        display.textContent=results();
+        currentDisplay=results();
+        currentNumbers=[];
+    }
 }
 let currentDisplay="";
 let currentNumbers=[];
