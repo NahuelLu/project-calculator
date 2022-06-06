@@ -23,6 +23,7 @@ window.addEventListener('keydown',ev => pressKey(ev.key));
 function pressKey(key){
     if(!isNaN(key)) displayNumber(key);
     if(isOperator(key)) selectOperator(key);
+    //Also i can do this with switch statement for avoiding create more functions
     if(isUndo(key)) undoNumber();
     if(isEquals(key)) showResults();
     if(isDecimal(key)) displayDecimal(key);
@@ -46,10 +47,10 @@ function subtract(num,num1){
     return num - num1;
 }
 function multiply(num,num1){
-    return num*num1;
+    return (num*num1).toFixed(2);
 }
 function divide(num,num1){
-    return num/num1;
+    return (num/num1).toFixed(2);
 }
 function operate(operator,num,num1){
     return operator(num,num1);
