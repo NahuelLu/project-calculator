@@ -57,6 +57,7 @@ function operate(operator,num,num1){
 }
 function undoNumber(){
     display.textContent=display.textContent.slice(0, -1);
+    currentDisplay=currentDisplay.slice(0,-1);
 }
 function displayDecimal(decimal){
     updateDisplay(decimal);
