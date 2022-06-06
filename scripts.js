@@ -23,9 +23,21 @@ window.addEventListener('keydown',ev => pressKey(ev.key));
 function pressKey(key){
     if(!isNaN(key)) displayNumber(key);
     if(isOperator(key)) selectOperator(key);
+    if(isUndo(key)) undoNumber();
+    if(isEquals(key)) showResults();
+    if(isDecimal(key)) displayDecimal();
 }
 function isOperator(key){
     return key==="/" || key==="*" || key==="+" || key==="-" ;
+}
+function isDecimal(key){
+    return key === ".";
+}
+function isEquals(key){
+    return key==="Enter";
+}
+function isUndo(key){
+    return key==="Backspace";
 }
 function add(){
     return num + num1;
@@ -43,7 +55,7 @@ function operate(operator,num,num1){
     return operator(num,num1);
 }
 function undoNumber(){
-    toString(display.textContent).slice(0, -1);
+    display.textContent=display.textContent.slice(0, -1);
 }
 function displayDecimal(){
     updateDisplay(".");
