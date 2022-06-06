@@ -17,7 +17,7 @@ buttonsNumber.forEach(button => button.addEventListener('click',() => displayNum
 buttonsOperators.forEach(button => button.addEventListener('click',() => selectOperator(button.value)));
 equalsButton.addEventListener('click',showResults);
 clearButton.addEventListener('click',clearCalculator);
-decimalButton.addEventListener('click',displayDecimal);
+decimalButton.addEventListener('click',()=> displayDecimal(button.value));
 undoButton.addEventListener('click',undoNumber);
 window.addEventListener('keydown',ev => pressKey(ev.key));
 function pressKey(key){
@@ -25,7 +25,7 @@ function pressKey(key){
     if(isOperator(key)) selectOperator(key);
     if(isUndo(key)) undoNumber();
     if(isEquals(key)) showResults();
-    if(isDecimal(key)) displayDecimal();
+    if(isDecimal(key)) displayDecimal(key);
 }
 function isOperator(key){
     return key==="/" || key==="*" || key==="+" || key==="-" ;
@@ -57,9 +57,9 @@ function operate(operator,num,num1){
 function undoNumber(){
     display.textContent=display.textContent.slice(0, -1);
 }
-function displayDecimal(){
+function displayDecimal(decimal){
     updateDisplay(".");
-    currentDisplay+=this.value;
+    currentDisplay+=decimal;
 }
 function updateDisplay(content){
     if(content==="") display.textContent=content;
