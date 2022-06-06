@@ -17,7 +17,7 @@ buttonsNumber.forEach(button => button.addEventListener('click',() => displayNum
 buttonsOperators.forEach(button => button.addEventListener('click',() => selectOperator(button.value)));
 equalsButton.addEventListener('click',showResults);
 clearButton.addEventListener('click',clearCalculator);
-decimalButton.addEventListener('click',()=> displayDecimal(button.value));
+decimalButton.addEventListener('click',()=> displayDecimal(decimalButton.value));
 undoButton.addEventListener('click',undoNumber);
 window.addEventListener('keydown',ev => pressKey(ev.key));
 function pressKey(key){
@@ -59,7 +59,7 @@ function undoNumber(){
     display.textContent=display.textContent.slice(0, -1);
 }
 function displayDecimal(decimal){
-    updateDisplay(".");
+    updateDisplay(decimal);
     currentDisplay+=decimal;
 }
 function updateDisplay(content){
