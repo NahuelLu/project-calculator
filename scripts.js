@@ -13,13 +13,20 @@ const clearButton= document.querySelector('#clear');
 const decimalButton= document.querySelector('#decimal-point');
 const undoButton= document.querySelector('#undo');
 
-buttonsNumber.forEach(button => button.addEventListener("click",displayNumber));
-buttonsOperators.forEach(button=> button.addEventListener('click',selectOperator));
+buttonsNumber.forEach(button => button.addEventListener('click',() => displayNumber(button.value)));
+buttonsOperators.forEach(button => button.addEventListener('click',() => selectOperator(button.value)));
 equalsButton.addEventListener('click',showResults);
 clearButton.addEventListener('click',clearCalculator);
 decimalButton.addEventListener('click',displayDecimal);
 undoButton.addEventListener('click',undoNumber);
-
+window.addEventListener('keydown',ev => pressKey(ev.key));
+function pressKey(key){
+    if(!isNaN(key)) displayNumber(key);
+    if(isOperator(key)) selectOperator(key);
+}
+function isOperator(key){
+    return key==="/" || key==="*" || key==="+" || key==="-" ;
+}
 function add(){
     return num + num1;
 }
@@ -43,9 +50,7 @@ function displayDecimal(){
     currentDisplay+=this.value;
 }
 function updateDisplay(content){
-    if(content===""){
-        display.textContent=content;
-    }
+    if(content==="") display.textContent=content;
     display.textContent+=content;
 }
 function updateOperator(operator){
@@ -63,19 +68,17 @@ function clearCalculator(){
     currentNumbers=[];
     currentOperator="";
 }
-function displayNumber(){
-    if(currentOperator==="" && currentNumbers.length !==0)
-        clearCalculator();
-
-    updateDisplay(this.value);
-    currentDisplay+=this.value;
+function displayNumber(number){
+    if(currentOperator==="" && currentNumbers.length !==0) clearCalculator();
+    updateDisplay(number);
+    currentDisplay+=number;
 }
 
-function selectOperator(){
+function selectOperator(operator){
     updateCurrentNumbers(currentDisplay);
-    updateDisplay(this.value);
+    updateDisplay(operator);
     clearCurrentDisplay();
-    updateOperator(this.value);
+    updateOperator(operator);
 }
 function showResults(){
     if(currentDisplay!==""){
@@ -92,23 +95,20 @@ function updateDisplayWithResults(){
         currentNumbers=[];
     }
 }
-function displayError(message){
-    alert(message);
-}
 function results(){
     let number1=Number(currentNumbers[0]);
     let number2=Number(currentNumbers[1]);
-    if(currentOperator==="+"){
-        return operate(add,number1,number2);
-    }else if(currentOperator==="-"){
-        return operate(subtract,number1,number2);
-    }else if(currentOperator==="*"){
-        return operate(multiply,number1,number2);
-    }else{
-        if(number2==0){
-            displayError("You can divide with 0 dummy!!");
-            return 0;
-        }
-        return operate(divide,number1,number2);
+    switch (currentOperator) {
+        case "+":
+            return operate(add,number1,number2);
+        case "-":
+            return operate(subtract,number1,number2);
+        case "*":
+            return operate(multiply,number1,number2);
+        case "/":
+            return operate(divide,number1,number2);
+        default:
+            break;
     }
+    
 }
